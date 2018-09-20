@@ -1,0 +1,51 @@
+{
+  "name": "ebayui-storybook",
+  "version": "1.0.0",
+  "description": "A playground for the eBayUi Core Components.",
+  "main": "index.js",
+  "scripts": {
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook",
+    "deploy-storybook": "storybook-to-ghpages"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/eBay/ebayui-storybook.git"
+  },
+  "author": {
+    "name": "Neville Mehta (nm123github)",
+    "email": "nm123github@theblackholeemailsystem.com"
+  },
+  "contributors": [
+    {
+      "name": "Sean Gates (seangates)",
+      "email": "oregonwebdev@gmail.com"
+    }
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/eBay/ebayui-storybook/issues"
+  },
+  "homepage": "https://github.com/eBay/ebayui-storybook#readme",
+  "devDependencies": {
+    "@ebay/ebayui-core": "^1.0.4",
+    "@ebay/skin": "^6.0.3",
+    "@storybook/addon-a11y": "^4.0.0-alpha.14",
+    "@storybook/addon-actions": "^4.0.0-alpha.14",
+    "@storybook/addon-knobs": "^4.0.0-alpha.14",
+    "@storybook/addon-notes": "^4.0.0-alpha.14",
+    "@storybook/addon-viewport": "^4.0.0-alpha.14",
+    "@storybook/marko": "^4.0.0-alpha.14",
+    "@storybook/storybook-deployer": "^2.3.0",
+    "babel-core": "^6.26.3",
+    "babel-runtime": "^6.26.0",
+    "css-loader": "^1.0.0",
+    "less": "^3.8.1",
+    "less-loader": "^4.1.0",
+    "marko": "^4",
+    "marko-widgets": "^7",
+    "moment": "^2.22.2",
+    "style-loader": "^0.21.0"
+  },
+  "dependencies": {}
+}
