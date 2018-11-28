@@ -1,0 +1,163 @@
+
+class {
+    toggleCode(event, btnEl) {
+        const codeEl = btnEl.parentElement.parentElement.children[1].firstChild;
+        if (btnEl.textContent == 'Show code') {
+            btnEl.textContent = 'Hide code';
+            codeEl.classList.remove("hide");
+            codeEl.classList.add("show");
+        } else {
+            btnEl.textContent = 'Show code';
+            codeEl.classList.remove("show");
+            codeEl.classList.add("hide");
+        }
+    }
+    textChangeHandler(event) {
+        const value = event.value;
+        alert("textbox input changed: " + value);
+    }
+
+}
+
+style {
+    .ebay-component-main-content {
+        padding: 10px;
+        background-color: #fff;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .ebayui-section-desc {
+        margin-bottom: 20px;
+    }
+
+    .ebayui-section-title, .usage-title {
+        border-bottom: 1px solid #eaecef;
+        margin-bottom: 10px;
+    }
+
+    .usage-title {
+        display: flex;
+    }
+
+    .usage-title > .code-link {
+        color: rgb(56, 153, 236);
+        outline: none;
+        border: none;
+        background: none;
+        cursor: pointer;
+    }
+
+    .usage-code > pre {
+        padding: 20px;
+        overflow: auto;
+        font-size: 14px;
+        background-color: #f6f8fa;
+        border-radius: 3px;
+        display: none;
+    }
+
+    .usage-code > pre.show {
+        display: block;
+    }
+
+    .usage-code > pre.hide {
+        display: none;
+    }
+
+    .usage-component {
+        margin-bottom: 20px;
+    }
+
+    .usage > .examples {
+        display: flex;
+        margin-bottom: 20px;
+    }
+
+    .examples > .usage-component{
+        flex-grow: 1;
+    }
+
+    .examples > .usage-component > div:first-child {
+        margin-bottom: 5px;
+    }
+
+}
+<macro displayCode(code)>
+    <div class="usage-code">
+            <pre>
+                <for(line in code)>
+                    <span>${line}</span>
+                </for>
+            </pre>
+    </div>
+</macro>
+<div class="ebay-component-main-content">
+    <div class="ebayui-section-title">
+        <h2>ebay-textbox</h2>
+    </div>
+    <div class="ebayui-section-desc">
+        <span>Textbox allows the user to enter data. </span>
+    </div>
+    <div class="usage">
+        <div class="usage-title">
+             <h2>Basic Usage</h2>
+            <button type="button" class="code-link" on-click("toggleCode")>Show code</button>
+        </div>
+        <displayCode(['<ebay-textbox placeholder="Placeholder text" />'])/>
+        <div class="usage-component">
+            <ebay-textbox placeholder="Placeholder text" />
+        </div>
+    </div>
+    <div class="usage">
+        <div class="usage-title">
+            <h2>Multiline</h2>
+            <button type="button" class="code-link" on-click("toggleCode")>Show code</button>
+        </div>
+        <displayCode(['<ebay-textbox multiline />'])/>
+        <div class="usage-component">
+            <ebay-textbox multiline />
+        </div>
+    </div>
+    <div class="usage">
+        <div class="usage-title">
+            <h2>Event-handling</h2>
+            <button type="button" class="code-link" on-click("toggleCode")>Show code</button>
+        </div>
+        <div class="usage-code">
+            <pre>
+                class {
+                    textChangeHandler(event) {
+                        const value = event.value;
+                        alert("textbox input changed: " + value);
+                    }
+                }
+
+                $ var code = '<ebay-textbox on-textbox-input("textChangeHandler") placeholder="Type something..."  />';
+                //component declaration in the template
+                ${code}
+            </pre>
+        </div>
+        <div class="usage-component">
+            <ebay-textbox on-textbox-input("textChangeHandler") placeholder="Type something..."  />
+        </div>
+    </div>
+    <div class="usage">
+        <div class="usage-title">
+            <h2>Examples</h2>
+            <button type="button" class="code-link" on-click("toggleCode")>Show code</button>
+        </div>
+        $ var code = ['<ebay-textbox value="Readonly value" disabled />', '<ebay-textbox value="Invalid value" invalid />'];
+        <displayCode(code)/>
+        <div class="examples">
+            <div class="usage-component">
+                <div><label>Disabled</label></div>
+                <ebay-textbox value="Readonly value" disabled />
+            </div>
+            <div class="usage-component">
+                <div><label>Invalid</label></div>
+                <ebay-textbox value="Invalid value" invalid />
+            </div>
+        </div>
+    </div>
+</div>
