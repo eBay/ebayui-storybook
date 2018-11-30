@@ -1,0 +1,202 @@
+
+class {
+    toggleCode(event, btnEl) {
+        const codeEl = btnEl.parentElement.parentElement.children[1].firstChild;
+        if (btnEl.textContent == 'Show code') {
+            btnEl.textContent = 'Hide code';
+            codeEl.classList.remove("hide");
+            codeEl.classList.add("show");
+        } else {
+            btnEl.textContent = 'Show code';
+            codeEl.classList.remove("show");
+            codeEl.classList.add("hide");
+        }
+    }
+    textChangeHandler(event) {
+        const value = event.value;
+        alert("textbox input changed: " + value);
+    }
+
+}
+
+style {
+    .ebay-component-main-content {
+        padding: 10px;
+        background-color: #fff;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .ebayui-section-desc {
+        margin-bottom: 20px;
+    }
+
+    .ebayui-section-title, .usage-title {
+        border-bottom: 1px solid #eaecef;
+        margin-bottom: 10px;
+    }
+
+    .usage-title {
+        display: flex;
+    }
+
+    .usage-title > .code-link {
+        color: rgb(56, 153, 236);
+        outline: none;
+        border: none;
+        background: none;
+        cursor: pointer;
+    }
+
+    .usage-code > pre {
+        padding: 20px;
+        overflow: auto;
+        font-size: 14px;
+        background-color: #f6f8fa;
+        border-radius: 3px;
+        display: none;
+    }
+
+    .usage-code > pre.show {
+        display: block;
+    }
+
+    .usage-code > pre.hide {
+        display: none;
+    }
+
+    .usage-component {
+        margin-bottom: 20px;
+    }
+
+    .usage > .examples {
+        display: flex;
+        margin-bottom: 20px;
+    }
+
+    .examples > .usage-component{
+        flex-grow: 1;
+    }
+
+    .examples > .usage-component > div:first-child {
+        margin-bottom: 5px;
+    }
+
+}
+<macro displayCode(code)>
+    <div class="usage-code">
+            <pre>
+                <for(line in code)>
+<span>${line}</span>
+                </for>
+            </pre>
+    </div>
+</macro>
+<div class="ebay-component-main-content">
+    <div class="ebayui-section-title">
+        <h2>ebay-breadcrumb</h2>
+    </div>
+    <div class="ebayui-section-desc">
+        <span>Breadcrumbs are a navigational landmark that let the user discover their current position in the site hierarchy and provide a means to navigate upwards through that hierarchy.</span>
+    </div>
+    <div class="usage">
+        <div class="usage-title">
+             <h2>Breadcrumb heading level</h2>
+            <button type="button" class="code-link" on-click("toggleCode")>Show code</button>
+        </div>
+        <displayCode([
+            'Note: If the last breadcrumb is not the current page, then that link must have a valid href.',
+            '<ebay-breadcrumb a11y-heading-text="Page navigation" a11y-heading-tag="h3">',
+            '   <ebay-breadcrumb-item href="http://www.ebay.com/">eBay</ebay-breadcrumb-item>',
+            '   <ebay-breadcrumb-item href="https://www.ebay.com/rpp/cell-phone-pda">Cell Phones, Smart Watches & Accessories</ebay-breadcrumb-item>',
+            '   <ebay-breadcrumb-item href="https://www.ebay.com/b/Smart-Watch-Accessories/182064/bn_16565905">Smart Watch Accessories</ebay-breadcrumb-item>',
+            '   <ebay-breadcrumb-item href="https://www.ebay.com/b/Smart-Watch-Bands/182068/bn_16565906">Smart Watch Bands</ebay-breadcrumb-item>',
+            '</ebay-breadcrumb>'
+        ])/>
+        <div class="usage-component">
+            <ebay-breadcrumb a11y-heading-text="Page navigation" a11y-heading-tag="h3">
+                <ebay-breadcrumb-item href="http://www.ebay.com/">eBay</ebay-breadcrumb-item>
+                <ebay-breadcrumb-item href="https://www.ebay.com/rpp/cell-phone-pda">Cell Phones, Smart Watches & Accessories</ebay-breadcrumb-item>
+                <ebay-breadcrumb-item href="https://www.ebay.com/b/Smart-Watch-Accessories/182064/bn_16565905">Smart Watch Accessories</ebay-breadcrumb-item>
+                <ebay-breadcrumb-item href="https://www.ebay.com/b/Smart-Watch-Bands/182068/bn_16565906">Smart Watch Bands</ebay-breadcrumb-item>
+            </ebay-breadcrumb>
+        </div>
+    </div>
+    <div class="usage">
+        <div class="usage-title">
+            <h2>Last breadcrumb is the current page</h2>
+            <button type="button" class="code-link" on-click("toggleCode")>Show code</button>
+        </div>
+        <displayCode([
+            'Note: Typically, the last breadcrumb is the current page, therefore that link\'s href attribute is not relevant and can be removed.',
+            '<ebay-breadcrumb-item href="http://www.ebay.com/">eBay</ebay-breadcrumb-item>',
+            '   <ebay-breadcrumb-item href="https://www.ebay.com/rpp/cell-phone-pda">Cell Phones, Smart Watches & Accessories</ebay-breadcrumb-item>',
+            '   <ebay-breadcrumb-item href="https://www.ebay.com/b/Smart-Watch-Accessories/182064/bn_16565905">Smart Watch Accessories</ebay-breadcrumb-item>',
+            '<ebay-breadcrumb-item>Smart Watch Bands</ebay-breadcrumb-item>'
+        ])/>
+        <div class="usage-component">
+            <ebay-breadcrumb a11y-heading-text="Page navigation">
+                <ebay-breadcrumb-item href="http://www.ebay.com/">eBay</ebay-breadcrumb-item>
+                <ebay-breadcrumb-item href="https://www.ebay.com/rpp/cell-phone-pda">Cell Phones, Smart Watches & Accessories</ebay-breadcrumb-item>
+                <ebay-breadcrumb-item href="https://www.ebay.com/b/Smart-Watch-Accessories/182064/bn_16565905">Smart Watch Accessories</ebay-breadcrumb-item>
+                <ebay-breadcrumb-item>Smart Watch Bands</ebay-breadcrumb-item>
+            </ebay-breadcrumb>
+        </div>
+    </div>
+    <div class="usage">
+        <div class="usage-title">
+            <h2>Breadcrumb with custom attributes</h2>
+            <button type="button" class="code-link" on-click("toggleCode")>Show code</button>
+        </div>
+        <displayCode([
+            '<ebay-breadcrumb a11y-heading-text="Page navigation">',
+            '   <ebay-breadcrumb-item href="http://www.ebay.com/" navsrc="{}" _sp="p2345.m909.l34">eBay</ebay-breadcrumb-item>',
+            '   <ebay-breadcrumb-item href="https://www.ebay.com/rpp/cell-phone-pda" navsrc="{}" _sp="p2345.m909.l34">Cell Phones, Smart Watches & Accessories</ebay-breadcrumb-item>',
+            '   <ebay-breadcrumb-item href="https://www.ebay.com/b/Smart-Watch-Accessories/182064/bn_16565905" navsrc="{}" _sp="p2345.m909.l34">Smart Watch Accessories</ebay-breadcrumb-item>',
+            '   <ebay-breadcrumb-item>Smart Watch Bands</ebay-breadcrumb-item>',
+            '</ebay-breadcrumb>'
+        ])/>
+        <div class="usage-component">
+            <ebay-breadcrumb a11y-heading-text="Page navigation">
+                <ebay-breadcrumb-item href="http://www.ebay.com/" navsrc="{}" _sp="p2345.m909.l34">eBay</ebay-breadcrumb-item>
+                <ebay-breadcrumb-item href="https://www.ebay.com/rpp/cell-phone-pda" navsrc="{}" _sp="p2345.m909.l34">Cell Phones, Smart Watches & Accessories</ebay-breadcrumb-item>
+                <ebay-breadcrumb-item href="https://www.ebay.com/b/Smart-Watch-Accessories/182064/bn_16565905" navsrc="{}" _sp="p2345.m909.l34">Smart Watch Accessories</ebay-breadcrumb-item>
+                <ebay-breadcrumb-item>Smart Watch Bands</ebay-breadcrumb-item>
+            </ebay-breadcrumb>
+        </div>
+    </div>
+    <div class="usage">
+        <div class="usage-title">
+            <h2>Event Handling</h2>
+            <button type="button" class="code-link" on-click("toggleCode")>Show code</button>
+        </div>
+        <displayCode([
+            '<ebay-breadcrumb hijax class="breadcrumb--hijax">',
+            '   <ebay-breadcrumb-item href="http://www.ebay.com/">eBay</ebay-breadcrumb-item>',
+            '   <ebay-breadcrumb-item href="https://www.ebay.com/rpp/cell-phone-pda">Cell Phones, Smart Watches & Accessories</ebay-breadcrumb-item>',
+            '   <ebay-breadcrumb-item href="https://www.ebay.com/b/Smart-Watch-Accessories/182064/bn_16565905">Smart Watch Accessories</ebay-breadcrumb-item>',
+            '   <ebay-breadcrumb-item>Smart Watch Bands</ebay-breadcrumb-item>',
+            '</ebay-breadcrumb>',
+
+            '<script>(function() {',
+            '  var breadcrumb = document.querySelector(".breadcrumb--hijax");',
+            '  console.log("breadcrumb", breadcrumb)',
+            '  breadcrumb.addEventListener("breadcrumb-select", e => console.log(e.detail));',
+            '})()</script>'
+        ])/>
+        <div class="usage-component">
+            <ebay-breadcrumb hijax class="breadcrumb--hijax">
+                <ebay-breadcrumb-item href="http://www.ebay.com/">eBay</ebay-breadcrumb-item>
+                <ebay-breadcrumb-item href="https://www.ebay.com/rpp/cell-phone-pda">Cell Phones, Smart Watches & Accessories</ebay-breadcrumb-item>
+                <ebay-breadcrumb-item href="https://www.ebay.com/b/Smart-Watch-Accessories/182064/bn_16565905">Smart Watch Accessories</ebay-breadcrumb-item>
+                <ebay-breadcrumb-item>Smart Watch Bands</ebay-breadcrumb-item>
+            </ebay-breadcrumb>
+
+            <script>(function() {
+              var breadcrumb = document.querySelector(".breadcrumb--hijax");
+              console.log("breadcrumb", breadcrumb);
+              breadcrumb.addEventListener("breadcrumb-select", e => console.log(e.detail));
+            })()</script>
+        </div>
+    </div>
+</div>

@@ -13,10 +13,14 @@ import BreadcrumbPageWithCustomAttributes from '@ebay/ebayui-core/dist/component
 import BreadcrumbHijax from '@ebay/ebayui-core/dist/components/ebay-breadcrumb/examples/05-hijax/template.marko';
 import BreadcrumbReadme from '@ebay/ebayui-core/dist/components/ebay-breadcrumb/README.md';
 import BreadcrumbExamplesReadme from './readme.md.js';
+import BreadcrumbStoryBook from './breadcrumb-storybook.marko';
 
 storiesOf('ebayui/ebay-breadcrumb', module)
   .addDecorator(withKnobs)
   .addDecorator(withNotes)
+  .add('usage', () => {
+    return BreadcrumbStoryBook.renderSync({});
+  }, { notes: { markdown: BreadcrumbReadme } })
   .add('<dynamic>', () => {
     const headingText = text('headingText', 'Page navigation');
     const headingLevel = text('headingLevel', 'h3');
@@ -32,19 +36,4 @@ storiesOf('ebayui/ebay-breadcrumb', module)
       hijax,
       items
     });
-  }, { notes: { markdown: BreadcrumbReadme } })
-  .add('breadcrumb heading level', () => {
-    return BreadcrumbHeadingLevel.renderSync({});
-  }, { notes: { markdown: BreadcrumbExamplesReadme.headinglevel } })
-  .add('last page as current', () => {
-    return BreadcrumbLastPageAsCurrent.renderSync({});
-  }, { notes: { markdown: BreadcrumbExamplesReadme.lastpageascurrent } })
-  .add('last page as parent', () => {
-    return BreadcrumbLastPageAsParent.renderSync({});
-  }, { notes: { markdown: BreadcrumbExamplesReadme.lastpageasparent } })
-  .add('page with custom attributes', () => {
-    return BreadcrumbPageWithCustomAttributes.renderSync({});
-  }, { notes: { markdown: BreadcrumbExamplesReadme.pagewithcustomattributes } })
-  .add('hijax', () => {
-    return BreadcrumbHijax.renderSync({});
-  }, { notes: { markdown: BreadcrumbExamplesReadme.hijax } });
+  }, { notes: { markdown: BreadcrumbReadme } });

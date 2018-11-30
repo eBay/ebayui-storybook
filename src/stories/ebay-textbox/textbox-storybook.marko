@@ -87,7 +87,7 @@ style {
     <div class="usage-code">
             <pre>
                 <for(line in code)>
-                    <span>${line}</span>
+<span>${line}</span>
                 </for>
             </pre>
     </div>
@@ -126,16 +126,16 @@ style {
         </div>
         <div class="usage-code">
             <pre>
-                class {
-                    textChangeHandler(event) {
-                        const value = event.value;
-                        alert("textbox input changed: " + value);
-                    }
-                }
+class {
+    textChangeHandler(event) {
+        const value = event.value;
+        alert("textbox input changed: " + value);
+    }
+}
 
-                $ var code = '<ebay-textbox on-textbox-input("textChangeHandler") placeholder="Type something..."  />';
-                //component declaration in the template
-                ${code}
+$ var code = '<ebay-textbox on-textbox-input("textChangeHandler") placeholder="Type something..."  />';
+//component declaration in the template
+${code}
             </pre>
         </div>
         <div class="usage-component">
